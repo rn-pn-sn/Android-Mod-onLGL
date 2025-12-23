@@ -3,6 +3,7 @@
 ![GitHub](https://img.shields.io/github/license/LGLTeam/Android-Mod-Menu?style=flat-square)
 
 Just mod without menu for il2cpp and other native android games. Based on last LGL (v5 fork): https://github.com/rn-pn-sn/Android-Mod-Menu-v5
+
 Support Android 4.4 to 16. ARMv7 and ARM64 are supported.
 
 KittyMemory, Dobby, xDL and basic string obfuscator (AY obfuscator) included. Assets are stored as base64 in cpp and does not need to be stored under assets folder.
