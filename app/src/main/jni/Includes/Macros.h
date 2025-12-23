@@ -179,8 +179,6 @@ void DobbyPatchWrapper(const char *libName, const char *relative, std::string da
 #define PATCH(lib, off_sym, hex_asm) DobbyPatchWrapper(lib, OBFUSCATE(off_sym), OBFUSCATE(hex_asm), true)
 /// dobby patch remove (offset || sym)
 #define RESTORE(lib, off_sym) DobbyPatchWrapper(lib, OBFUSCATE(off_sym), "", false)
-/// dobby patch switch (offset || sym) (hex || asm)
-#define PATCH_SWITCH(lib, off_sym, hex_asm, boolean) DobbyPatchWrapper(lib, OBFUSCATE(off_sym), OBFUSCATE(hex_asm), boolean)
 
 
 
@@ -236,8 +234,6 @@ void KittyPatchWrapper(const char *libName, const char *relative, std::string da
 #define PATCH(lib, off_sym, hex_asm) KittyPatchWrapper(lib, OBFUSCATE(off_sym), OBFUSCATE(hex_asm), true)
 /// patch original restore (offset || sym)
 #define RESTORE(lib, off_sym) KittyPatchWrapper(lib, OBFUSCATE(off_sym), "", false)
-/// patch switch (offset || sym) (hex || asm)
-#define PATCH_SWITCH(lib, off_sym, hex_asm, boolean) KittyPatchWrapper(lib, OBFUSCATE(off_sym), OBFUSCATE(hex_asm), boolean)
 */
 
 /// Relative patches allow you to speed up patch creation if you are sure that the offsets within methods rarely change
@@ -250,8 +246,6 @@ void PatchRelativeOffset(const char *libName, const char *rootOffset, const char
 #define rPATCH(lib, root_off_sym, add_off, hex_asm) PatchRelativeOffset(lib, OBFUSCATE(root_off_sym), OBFUSCATE(add_off), OBFUSCATE(hex_asm), true)
 /// relative patch remove (offset || sym)
 #define rRESTORE(lib, root_off_sym, add_off) PatchRelativeOffset(lib, OBFUSCATE(root_off_sym), OBFUSCATE(add_off), "", false)
-/// relative patch switch (offset || sym) (offset) (hex || asm)
-#define rPATCH_SWITCH(lib, root_off_sym, add_off, hex_asm, boolean) PatchRelativeOffset(lib, OBFUSCATE(root_off_sym), OBFUSCATE(add_off), OBFUSCATE(hex_asm), boolean)
 
 
 
@@ -261,8 +255,4 @@ void PatchRelativeOffset(const char *libName, const char *rootOffset, const char
 #define dPATCH(lib, off_sym, asms, ...) DobbyPatchWrapper(lib, OBFUSCATE(off_sym), KittyUtils::String::Fmt(OBFUSCATE(asms), __VA_ARGS__), true)
 /// dynamic asm patch remove (offset || sym)
 #define dRESTORE(lib, off_sym) DobbyPatchWrapper(lib, OBFUSCATE(off_sym), "", false)
-/// dynamic asm patch (offset || sym) (asm pattern) (asm args)
-#define dPATCH_SWITCH(boolean, lib, off_sym, asms, ...) DobbyPatchWrapper(lib, OBFUSCATE(off_sym), KittyUtils::String::Fmt(OBFUSCATE(asms), __VA_ARGS__), boolean)
-/// dynamic asm relative patch (offset || sym) (offset) (asm pattern) (asm args)
-#define drPATCH_SWITCH(boolean, lib, root_off_sym, add_off, asms, ...) PatchRelativeOffset(lib, OBFUSCATE(root_off_sym), OBFUSCATE(add_off), KittyUtils::String::Fmt(OBFUSCATE(asms), __VA_ARGS__), boolean)
 #endif //ANDROID_MOD_MENU_MACROS_H

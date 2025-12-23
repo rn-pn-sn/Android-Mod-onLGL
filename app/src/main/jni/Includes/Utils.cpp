@@ -2,7 +2,6 @@
 #include "Utils.hpp"
 
 std::map<std::string, uintptr_t> lib_links;
-bool mainLibLoaded = false;
 
 uintptr_t getLibraryAddress(const char *libraryName) {
     if (!lib_links.count(libraryName)) {
@@ -78,10 +77,6 @@ void* getAbsoluteAddress(const char *libraryName, const char *relative) {
     }
 }
 
-jboolean isGameLibLoaded(JNIEnv *env, jobject thiz) {
-    return mainLibLoaded;
-}
-
 bool isLibraryLoaded(const char *libraryName) {
     char line[512] = {0};
     FILE *fp = fopen(OBFUSCATE("/proc/self/maps"), OBFUSCATE("rt"));
@@ -90,7 +85,6 @@ bool isLibraryLoaded(const char *libraryName) {
             std::string a = line;
             if (strstr(line, libraryName)) {
                 // LOGI(OBFUSCATE("main library (%s) loaded: 0x%llx"), libraryName, getLibraryAddress(libraryName));
-                mainLibLoaded = true;
                 return true;
             }
         }

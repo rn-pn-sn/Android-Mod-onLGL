@@ -34,9 +34,7 @@ LOCAL_C_INCLUDES += $(LOCAL_PATH)/Dobby/
 
 # Here you add the cpp file to compile
 LOCAL_SRC_FILES := Main.cpp \
-    Menu/Jni.cpp \
-    Menu/Menu.cpp \
-    Menu/Setup.cpp \
+    Setup.cpp \
     Includes/Utils.cpp \
 	KittyMemory/KittyAsm.cpp \
 	KittyMemory/KittyIOFile.cpp \

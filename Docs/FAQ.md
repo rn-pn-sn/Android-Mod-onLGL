@@ -39,10 +39,9 @@ There is no ETA, never. Stop crying! We will only update when we want to. Please
 
 Yes, there are simple protections in the template:
 - Simple C++ string obfuscation called AY Obfuscator. Usage `OBFUSCATE("string here")` and with a key `OBFUSCATE_KEY("string here", 64-bit key here)`. Example `OBFUSCATE_KEY("Hello", 2353474243)` or in hex `OBFUSCATE_KEY("Hello", 0x3FE63DF21A3B)`. The key must not be too long or too short
-- `string2Offset("")` to protect offsets
+- `string2offset("")` to protect offsets
 - Simple anti-leech measures that crashes if JNI functions are not called
 - Quite harder to edit credits via smali
-- Toast hidden inside `getFeatureList` in Main.cpp
 - JNI functions hidden
 
 You should always keep in mind it's impossible stop leechers, this intent is to help you improve on your own by yourself. You should:

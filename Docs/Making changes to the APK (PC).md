@@ -27,62 +27,22 @@ Locate to the game's path of main activity and open the **smali** file. If the g
 
 With the path of the target game’s main activity which we determined earlier `com.unity3d.player.UnityPlayerActivity`. Think of it like a path `/com/unity3d/player/UnityPlayerActivity.smali`
 
-### With overlay permission
-
 Search for OnCreate method and paste this code inside
 
 ```
-invoke-static {p0}, Lcom/android/support/Main;->Start(Landroid/content/Context;)V
+invoke-static {p0}, Lcom/android/support/MainActivity;->onCreate(Landroid/content/Context;)V
 ```
 
-![](https://i.imgur.com/TQy3jUY.png)
-
-Open the game's `AndroidManifest.xml`
-
-Add the `SYSTEM_ALERT_WINDOW` permission besides other permissions if it doesn't exist. Doesn't matter where you place it as long as it's above the application tag
-```xml
-<uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+example:
 ```
+.method protected onCreate(Landroid/os/Bundle;)V
+    .locals 9
 
-![](https://i.imgur.com/XOxLU91.png)
-
-If you don't add it, you can't enable overlay permission, it will be greyed out
-
-Add the service above the end tag of application
-
-```xml
-<service android:name="com.android.support.Launcher" android:enabled="true"
-    android:exported="false" android:stopWithTask="true" />
+    .line 594
+	invoke-static {p0}, Lcom/android/support/MainActivity;->onCreate(Landroid/content/Context;)V
+	
+    invoke-super {p0, p1}, Lcom/unity3d/player/UnityPlayerActivity;->onCreate(Landroid/os/Bundle;)V
 ```
-
-![](https://i.imgur.com/2Jjd8cY.png)
-
-
-### Without overlay permission
-
-**ONLY use if the game is detecting mod menu. Some games are using old AppCompat or custom activity that may interfere with the layout, such as enforced Kitkat-based layout like this below. I could not find a way to fix yet.**
-
-![](https://i.imgur.com/tSKGGsy.png)
-
-We can easly determite that this is an activity
-
-![](https://i.imgur.com/iXQD6H6.png)
-
-But what about this? It's an application context. Menu will not launch and asks for permission with switch greyed out.
-
-![](https://i.imgur.com/APZytXN.png)
-
-But if you are unsure, just give it a try.
-
-Search for OnCreate method and paste this code inside
-
-```
-invoke-static {p0}, Lcom/android/support/Main;->StartWithoutPermission(Landroid/content/Context;)V
-```
- 
-![](https://i.imgur.com/0KchOjz.png)
-
-If menu is not showing up for some reason, or ask for permission. You need to add overlay permission. See above
 
 ## Method 2 - Launch from AndroidManifest.xml
 
@@ -95,7 +55,7 @@ On yout `MainActivity.java`, put the game's main activity to `public String Game
 Uncomment this code
 
 ```
-Toast.makeText(MainActivity.this, "Error. Game's main activity does not exist", Toast.LENGTH_LONG).show();
+Log.e("Mod", "Error. Game's main activity does not exist");
 ```
 
 On `AndroidManifest.xml`, remove `<action android:name="android.intent.action.MAIN"/>` from the game's activity, like this:
@@ -117,24 +77,6 @@ Add your activity tag. `com.android.support.MainActivity` is your main activity
 ```
 
 ![](https://i.imgur.com/ZgbpTm8.png)
-
-Add the `SYSTEM_ALERT_WINDOW` permission besides other permissions if it doesn't exist. Doesn't matter where you place it as long as it's above the application tag
-```xml
-<uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
-```
-
-![](https://i.imgur.com/XOxLU91.png)
-
-If you don't add it, you can't enable overlay permission, it will be greyed out
-
-Add the service above the end of application tag (change the package name of your menu if you had changed it)
-
-```xml
-<service android:name="com.android.support.Launcher" android:enabled="true"
-    android:exported="false" android:stopWithTask="true" />
-```
-
-![](https://i.imgur.com/2Jjd8cY.png)
 
 # 3. Building your project and copying files
 

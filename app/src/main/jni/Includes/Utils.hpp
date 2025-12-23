@@ -17,8 +17,6 @@ void* getAbsoluteAddress(const char *libraryName, const char *relative);
 
 void* getRelativeAddress(const char *libraryName, const char *rootOffset, const char *addOffset);
 
-jboolean isGameLibLoaded(JNIEnv *env, jobject thiz);
-
 bool isLibraryLoaded(const char *libraryName);
 
 uintptr_t str2offset(const char *c);
