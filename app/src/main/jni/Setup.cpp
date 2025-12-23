@@ -45,7 +45,7 @@ void Init(JNIEnv *env, jobject thiz, jobject ctx) {
            OBFUSCATE("Visit"), // set nullptr if btn-link is not needed
            OBFUSCATE("Close"),
            3, // set 0 if auto-close is not needed
-           OBFUSCATE("https://github.com/LGLTeam")); // set nullptr if btn-link is not needed
+           OBFUSCATE("https://github.com/rn-pn-sn")); // set nullptr if btn-link is not needed
 
     // Toast Example
     Toast(env, ctx, OBFUSCATE("Modded by YOU"), ToastLength::LENGTH_LONG);

@@ -19,11 +19,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <service
-            android:name="com.android.support.Launcher"
-            android:enabled="true"
-            android:exported="true"
-            android:stopWithTask="true" />
         <!-- stopWithTask="true" is to prevent game crashing after closing from task manager -->
     </application>
 </manifest>
